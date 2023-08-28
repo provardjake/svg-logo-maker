@@ -45,22 +45,23 @@ function writeToFile(data){
     const svg = generateSVG(data);
 
     fs.writeFile("logo.svg",svg, (err)=>{
-        err ? console.log(err) : console.log("Your logo has been generated!");
+        err ? console.log(err) : console.log("Generated logo.svg");
     } )
 }
 
 function generateSVG(data){
     let shape;
     if (data.shape === "circle"){
-        shape = new Circle();
+        shape = new Circle(data.text, data.textColor, data.shapeColor);
     }
     if(data.shape === "triangle"){
-        shape = new Triangle();
+        shape = new Triangle(data.text, data.textColor, data.shapeColor);
     }
     if(data.shape === "square"){
-        shape = new Square();
+        shape = new Square(data.text, data.textColor, data.shapeColor);
     }
 
+    console.log(shape);
     return`<svg version="1.1" width="300" height="200">
 
         ${shape.render()}
