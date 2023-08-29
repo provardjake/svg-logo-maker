@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const {Circle, Square, Triangle} = require("./lib/shapes");
 
+// questions that will be prompted to the user
 const questions=[
     {
         name: "text", 
@@ -27,7 +28,7 @@ const questions=[
     }
 ];
 
-
+// prompts the user for what their logo should contain. then takes the answers and calls the writetofile function.
 function init(){
     inquirer.prompt(questions)
     .then((data)=>{
@@ -41,6 +42,7 @@ function init(){
     })
 }
 
+// write the formatted svg code to an svg file
 function writeToFile(data){
     const svg = generateSVG(data);
 
@@ -49,6 +51,7 @@ function writeToFile(data){
     } )
 }
 
+// formats the svg code depending on the user selection
 function generateSVG(data){
     let shape;
     if (data.shape === "circle"){
@@ -61,8 +64,7 @@ function generateSVG(data){
         shape = new Square(data.text.toUpperCase(), data.textColor, data.shapeColor);
     }
 
-    console.log(shape);
-    return`<svg version="1.1" width="300" height="200">
+    return`<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
 
         ${shape.render()}
 
