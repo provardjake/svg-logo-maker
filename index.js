@@ -52,13 +52,13 @@ function writeToFile(data){
 function generateSVG(data){
     let shape;
     if (data.shape === "circle"){
-        shape = new Circle(data.text, data.textColor, data.shapeColor);
+        shape = new Circle(data.text.toUpperCase(), data.textColor, data.shapeColor);
     }
     if(data.shape === "triangle"){
-        shape = new Triangle(data.text, data.textColor, data.shapeColor);
+        shape = new Triangle(data.text.toUpperCase(), data.textColor, data.shapeColor);
     }
     if(data.shape === "square"){
-        shape = new Square(data.text, data.textColor, data.shapeColor);
+        shape = new Square(data.text.toUpperCase(), data.textColor, data.shapeColor);
     }
 
     console.log(shape);
